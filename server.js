@@ -5,6 +5,7 @@ const expsesh = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(expsesh.Store);
 const sequelize = require('./config/connection');
 
+
 const hbs = exphbs.create({});
 
 
@@ -30,8 +31,8 @@ app.use(expsesh(sessionSettings));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
-// app.use(routes);
+const routes = require('./controllers');
+app.use(routes);
 
 sequelize.sync({force:false}).then(() => {
     app.listen(PORT, () => console.log( 'http://localhost:' + PORT))

@@ -30,5 +30,5 @@ btnEl.addEventListener('click', async (e) => {
             password,
         })
     });
-    // window.location.href = '/';
+    window.location.href = '/';
 })

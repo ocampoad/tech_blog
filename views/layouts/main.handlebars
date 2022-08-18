@@ -16,9 +16,11 @@
             <a class="text-dark nav-link active" aria-current="page" href="#">Tech Blog Post</a>
             <a class="text-dark nav-link" href="/">Home</a>
             <a class="text-dark nav-link" href="/api/blogs">Dashboard</a>
-            <a class="text-dark nav-link" href="/api/login">Log In</a>
-            {{#if isLogIn}}
+            {{#if isLoggedIn}}
             <a class="text-dark nav-link" href="/api/logout">Log Out</a>
+           
+            {{else}}
+             <a class="text-dark nav-link" href="/api/login">Log In</a>
             {{/if}}
         </nav>
         {{{body}}}

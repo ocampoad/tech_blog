@@ -2,7 +2,8 @@ const router = require('express').Router();
 const { User } = require('./../../../models')
 
 router.get('/', async (req, res) => {
-    res.render('signup');
+    const isLoggedIn = req.session.isLoggedIn
+    res.render('signup', {isLoggedIn });
 });
 
 router.post('/signup', async (req, res) => {
@@ -11,14 +12,22 @@ router.post('/signup', async (req, res) => {
         username: req.body.username,
         password: req.body.password
     });
+    req.session.save(() => {
+        req.session.user = req.user;
+        req.session.isLoggedIn = true;
+        res.json({ success: true });
+    });
+});
+
+router.post('/signin', async (req, res) => {
+
+    req.session.save(() => {
+        req.session.user = req.user;
+        req.session.isLoggedIn = true;
+        res.json({ success: true });
+    });
     res.send(newUser)
 });
 
-
-// req.session.save(() => {
-//     req.session.user = req.user;
-//     req.session.isLoggedIn = true;
-//     res.json({ success: true });
-// });
 
 module.exports = router; 

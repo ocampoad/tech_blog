@@ -13,11 +13,11 @@
 <body>
     <div class ="d-flex flex-column m-2 justify-content-around ">
         <nav class="nav bg-success">
-            <a class="text-dark nav-link active" aria-current="page" href="#">Tech Blog Post</a>
+            <a class="text-dark nav-link active" aria-current="page">Tech Blog Post</a>
             <a class="text-dark nav-link" href="/">Home</a>
             <a class="text-dark nav-link" href="/api/blogs">Dashboard</a>
             {{#if isLoggedIn}}
-            <a class="text-dark nav-link" href="/api/logout">Log Out</a>
+            <a class="text-dark nav-link" href="/api/login/logout">Log Out</a>
            
             {{else}}
              <a class="text-dark nav-link" href="/api/login">Log In</a>

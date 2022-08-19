@@ -1,0 +1,10 @@
+<div class="card m-2 p-2" style="width: 50rem;">
+    <div class="card-body">
+        <h5 class="card-title">Checkout the dashboard with the most recent blog posts!</h5>
+        {{#if isLoggedIn}}
+         <button type="button" class="btn btn-primary" id ="addPost"> + Add post </button>
+         {{else}}
+         <h6>Log in to post your own blogs!</h6>
+        {{/if}}
+    </div>
+</div>

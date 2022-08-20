@@ -3,6 +3,11 @@ const { User } = require('./../../../models')
 
 router.get('/', async (req, res) => {
     const isLoggedIn = req.session.isLoggedIn
+    res.render('signin', { isLoggedIn });
+});
+
+router.get('/signup', async (req, res) => {
+    const isLoggedIn = req.session.isLoggedIn
     res.render('signup', { isLoggedIn });
 });
 
@@ -30,13 +35,12 @@ router.post('/signup', async (req, res) => {
 
 router.post('/signin', async (req, res) => {
     const currentUser = await User.findOne({where: {username: req.body.username}})
-    console.log(currentUser.get({plain: true}).id)
+    console.log(currentUser.get({plain: true}))
     req.session.save(() => {
         req.session.user = req.user;
         req.session.isLoggedIn = true;
         res.json({ success: true });
     });
-    res.send(newUser)
 });
 
 router.post('/signout', async (req, res) => {

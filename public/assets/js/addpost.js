@@ -1,10 +1,12 @@
 const addPost = document.querySelector('#addPost');
-const blogPostInput = document.querySelector('#blogPostInput')
+const blogPostInput = document.querySelector('#blogPostInput');
+const blogPostTitle = document.querySelector('#blogPostTitle');
 
-addPost.addEventListener('click', () => {
-    const blogValue = blogPostInput.value();
-
-    const response = await fetch('/post', {
+addPost.addEventListener('click', async () => {
+    const blogValue = blogPostInput.value;
+    const blogTitle = blogPostTitle.value;
+    
+    const response = await fetch('/api/blogs/post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -12,8 +14,9 @@ addPost.addEventListener('click', () => {
         body: JSON.stringify({
             blogTitle: blogTitle,
             blogPost: blogValue,
-        })
-        
+        }) 
     });
-    res.send(response)
+    await response.json();
+    window.location.href = '/api/blogs'
+
 })

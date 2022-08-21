@@ -2,9 +2,19 @@
     <div class="card-body">
         <h5 class="card-title">Checkout the dashboard with the most recent blog posts!</h5>
         {{#if isLoggedIn}}
-         <button type="button" class="btn btn-primary" id ="addPost"> + Add post </button>
-         {{else}}
-         <h6>Log in to post your own blogs!</h6>
+        <h6>Post your blog below!</h6>
+        <div class="input-group">
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Blog Title</label>
+                <input type="text" class="form-control" id="formGroupExampleInput">
+                <label for="formGroupExampleInput2" class="form-label">Blog Post</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2">
+            </div>
+        </div>
+         <button type="button" class="btn btn-primary" id="addPost"> + Add post </button>
+
+        {{else}}
+        <h6>Log in to post your own blogs!</h6>
         {{/if}}
     </div>
 </div>

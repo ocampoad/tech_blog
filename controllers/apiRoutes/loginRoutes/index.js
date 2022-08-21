@@ -27,7 +27,7 @@ router.post('/signup', async (req, res) => {
         password: req.body.password
     });
     req.session.save(() => {
-        req.session.user = newUser.get({plain: true}).id;
+        req.session.user = newUser.get({plain: true});
         req.session.isLoggedIn = true;
         res.json({ success: true });
     });
@@ -35,9 +35,8 @@ router.post('/signup', async (req, res) => {
 
 router.post('/signin', async (req, res) => {
     const currentUser = await User.findOne({where: {username: req.body.username}})
-    console.log(currentUser.get({plain: true}))
     req.session.save(() => {
-        req.session.user = req.user;
+        req.session.user = currentUser.get({plain: true});
         req.session.isLoggedIn = true;
         res.json({ success: true });
     });

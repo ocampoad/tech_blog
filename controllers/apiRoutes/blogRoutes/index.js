@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const connection = require('./../../../config/connection');
+const moment = require('moment');
 const { User, Blog } = require('./../../../models')
 
 router.get('/', async (req, res) => {
@@ -15,12 +16,15 @@ router.get('/', async (req, res) => {
     res.render('blogposts', { isLoggedIn, everyBlog })
 });
 
+
+
 router.post('/post', async (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;
     const newPost = await Blog.create({
         blogTitle: req.body.blogTitle,
         blogPost: req.body.blogPost,
-        userId: req.session.user.id
+        userId: req.session.user.id,
+        datePosted: moment().format('YYYY-MM-DD')
     })
     res.send(newPost)
 })

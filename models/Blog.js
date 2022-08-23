@@ -26,6 +26,10 @@ Blog.init(
                 len: [0,256]
             },
         },
+        datePosted: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+        },
         userId: {
             type: DataTypes.UUID,
             references: {

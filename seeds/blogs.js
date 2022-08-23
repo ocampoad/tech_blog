@@ -2,22 +2,26 @@ module.exports = [
     {
         blogTitle: "Javascript",
         blogPost: "Javascript is fun", 
-        userId: "4aec0fb3-84e0-4de9-a38f-37b56ba9db41"
+        userId: "489441db-7ce6-4625-9d81-d4dd33685985",
+        datePosted: "1000-01-01"
     },
     {
         blogTitle: "CSS",
         blogPost: "CSS is kinda fun", 
-        userId: "6799f855-ba5a-4b87-8840-ba799eca6929"
+        userId: "489441db-7ce6-4625-9d81-d4dd33685985",
+        datePosted: "1000-01-02"
     },
     {
         blogTitle: "Full-Stack",
         blogPost: "Javascript is fun", 
-        userId: "8d071dc0-dc89-400d-aa06-75a08caf09b6"
+        userId: "37567e72-7108-4a50-b843-c4187120da6e",
+        datePosted: "1000-01-03"
     },
     {
         blogTitle: "Javascript",
         blogPost: "Javascript is fun", 
-        userId: "a4d5ddf0-adc4-482e-beb9-af18805991ec"
+        userId: "c20d68ec-be77-4d2d-946b-fc43cf8a46d2",
+        datePosted: "1000-01-04"
     }
         
 ]

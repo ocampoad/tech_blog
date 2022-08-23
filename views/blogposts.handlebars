@@ -2,11 +2,20 @@
 {{#each eachBlogs.blogs as | blogPosts |}}
 <div class="card">
   <div class="card-body">
-    <h5 class="card-text">{{blogPosts.blogTitle}} </h5>
+    <h5 class="card-text" id="userData" >{{blogPosts.blogTitle}} 
+      {{#if eachBlogs.isUser}} 
+      <button type="button" class="btn btn-warning btn-sm" id="editBlog">Edit</button>
+      <button type="button" class="btn btn-danger btn-sm" id="deleteBlog" onclick="deleteBlog('{{blogPosts.id}}')">Delete</button>
+      {{/if}}
+      </h5>
     <p class="card-text">{{blogPosts.blogPost}}</p>
     <p class=" text-end fst-italic"> Posted by {{eachBlogs.username}} on {{blogPosts.datePosted}}</p>
+    <p id='editAndDelete'></p>
+ 
   </div>
 </div>
+
 {{/each}}
 {{/each}}
 
+<script src="../assets/js/blog.js"></script>

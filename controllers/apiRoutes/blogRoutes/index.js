@@ -6,7 +6,6 @@ const { User, Blog } = require('./../../../models')
 router.get('/', async (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;
     const currentUser = req.session.user
-    console.log(currentUser)
     const blogPosts = await User.findAll({
         include: [{
             model: Blog
@@ -26,7 +25,6 @@ router.get('/', async (req, res) => {
             element.isUser = 0
         }
     });
-    console.log(everyBlog)
     res.render('blogposts', { isLoggedIn, everyBlog})
 });
 
@@ -48,6 +46,22 @@ router.delete('/delete/:id', async (req, res) => {
         }
     });
     res.json(deletedBlog);
+});
+
+router.put('/edit/:id', async (req,res) => {
+    console.log(req.params.id)
+    const updatedBlog = await Blog.update(
+        {
+            blogTitle: req.body.blogTitle,
+            blogPost: req.body.blogPost
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    );
+    res.send(updatedBlog);
 })
 
 module.exports = router;

@@ -4,10 +4,19 @@
   <div class="card-body">
     <h5 class="card-text" id="userData" >{{blogPosts.blogTitle}} 
       {{#if eachBlogs.isUser}} 
-      <button type="button" class="btn btn-warning btn-sm" id="editBlog">Edit</button>
+      <button type="button" class="btn btn-warning btn-sm" id="editBlog" onclick="editBlog('{{blogPosts.id}}')">Edit</button>
       <button type="button" class="btn btn-danger btn-sm" id="deleteBlog" onclick="deleteBlog('{{blogPosts.id}}')">Delete</button>
+       <div class="input-group" style="display:none" id= "hiddenInput{{blogPosts.id}}" >
+            <div class="mb-2">
+                <label for="formGroupExampleInput" class="form-label">Blog Title</label>
+                <input type="text" class="form-control" id="blogPostTitle{{blogPosts.id}}">
+                <label for="formGroupExampleInput2" class="form-label">Blog Post</label>
+                <input type="text" class="form-control" id="blogPostInput{{blogPosts.id}}">
+            </div>
+            <button type="button" class="btn btn-primary" id="submitPost" onclick="submitEditBlog('{{blogPosts.id}}')"> Update Post </button>
+        </div>
       {{/if}}
-      </h5>
+    </h5>
     <p class="card-text">{{blogPosts.blogPost}}</p>
     <p class=" text-end fst-italic"> Posted by {{eachBlogs.username}} on {{blogPosts.datePosted}}</p>
     <p id='editAndDelete'></p>
@@ -17,5 +26,8 @@
 
 {{/each}}
 {{/each}}
+
+
+
 
 <script src="../assets/js/blog.js"></script>

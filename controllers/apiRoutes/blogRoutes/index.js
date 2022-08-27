@@ -4,7 +4,8 @@ const moment = require('moment');
 const { User, Blog } = require('./../../../models')
 
 router.get('/', async (req, res) => {
-    const isLoggedIn = req.session.isLoggedIn;
+    try {
+        const isLoggedIn = req.session.isLoggedIn;
     const currentUser = req.session.user
     const blogPosts = await User.findAll({
         include: [{
@@ -26,42 +27,58 @@ router.get('/', async (req, res) => {
         }
     });
     res.render('blogposts', { isLoggedIn, everyBlog})
+    } catch (error) {
+        res.status(500).json({error})
+    }
 });
 
 router.post('/post', async (req, res) => {
-    const isLoggedIn = req.session.isLoggedIn;
-    const newPost = await Blog.create({
-        blogTitle: req.body.blogTitle,
-        blogPost: req.body.blogPost,
-        userId: req.session.user.id,
-        datePosted: moment().format('YYYY-MM-DD')
-    })
-    res.send(newPost)
+    try {
+        const isLoggedIn = req.session.isLoggedIn;
+        const newPost = await Blog.create({
+            blogTitle: req.body.blogTitle,
+            blogPost: req.body.blogPost,
+            userId: req.session.user.id,
+            datePosted: moment().format('YYYY-MM-DD')
+        })
+        res.send(newPost)
+    } catch (error) {
+        res.status(500).json({error})
+    }
+    
 })
 
 router.delete('/delete/:id', async (req, res) => {
-    const deletedBlog = await Blog.destroy({
-        where: {
-            id: req.params.id
-        }
-    });
-    res.json(deletedBlog);
-});
-
-router.put('/edit/:id', async (req,res) => {
-    console.log(req.params.id)
-    const updatedBlog = await Blog.update(
-        {
-            blogTitle: req.body.blogTitle,
-            blogPost: req.body.blogPost
-        },
-        {
+    try {
+        const deletedBlog = await Blog.destroy({
             where: {
                 id: req.params.id
             }
-        }
-    );
-    res.send(updatedBlog);
+        });
+        res.json(deletedBlog);
+    } catch (error) {
+        res.status(500).json({error}) 
+    }
+
+});
+
+router.put('/edit/:id', async (req,res) => {
+    try {
+        const updatedBlog = await Blog.update(
+            {
+                blogTitle: req.body.blogTitle,
+                blogPost: req.body.blogPost
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        );
+        res.send(updatedBlog); 
+    } catch (error) {
+        res.status(500).json({error})
+    }
 })
 
 module.exports = router;
